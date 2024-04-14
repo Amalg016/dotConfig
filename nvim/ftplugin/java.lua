@@ -31,7 +31,8 @@ local config = {
     init_options = {
         bundles = {
             vim.fn.glob(
-                '/Users/amal-18877/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-0.50.0.jar')
+                '/Users/amal-18877/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar')
+            --TODO Install java-debug and java-test from Mason DAP ---------> if the above code doesnt work, go to the above directory and find the actual version and paste it here!
         }
     }
 
@@ -41,17 +42,11 @@ config['on_attach'] = function(client, bufnr)
     require('jdtls').setup_dap({ hotcodereplace = 'auto' })
 end
 
--- https://download.eclipse.org/jdtls/milestones/       -0.57 version
+--TODO Download the jdtls from https://download.eclipse.org/jdtls/milestones/       -0.57 version
 require('jdtls').start_or_attach(config)
 
 function attach_to_debug()
     local dap = require('dap')
-    -- dap.adapters.java = {
-    --     type = 'executable',
-    --     command = 'java',
-    --     args = { '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:8000' },
-    --     name = "Java Debug",
-    -- }
     dap.configurations.java = {
         {
             type = 'java',
@@ -71,7 +66,6 @@ function run_app(debug)
     else
         vim.cmd('term' .. './gradlew startTomcat')
     end
-    -- vim.cmd(':bprevious<CR>')
 end
 
 -- Attach debug Session

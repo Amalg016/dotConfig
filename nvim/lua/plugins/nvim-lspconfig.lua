@@ -132,4 +132,3 @@ return {
 
 -- root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'mvnw', 'gradlew' }, { upward = true })[1]),
 --'/Users/amal-18877/.local/share/nvim/mason/packages/openjdk-17/jdk-17.0.2.jdk/Contents/Home/bin/'
--- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
