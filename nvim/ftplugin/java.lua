@@ -13,7 +13,7 @@ local config = {
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
         '-Dlog.level=ALL',
         '-noverify',
-        '-Xmx1G',
+        '-Xmx4G',
         '--add-modules=ALL-SYSTEM',
         --'--add-modules=java.base,java.logging,java.sql,java.xml,java.desktop,java.management,java.naming,java.rmi,java.scripting,java.security.jgss,java.security.sasl,java.sql.rowset,java.transaction.xa,java.xml.bind,java.xml.crypto,jdk.httpserver,jdk.unsupported,jdk.zipfs',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
@@ -21,7 +21,7 @@ local config = {
         '-jar', home ..
     '/.cache/nvim/nvim_lsp/jdtls/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar',
         '-configuration', home .. '/.cache/nvim/nvim_lsp/jdtls/config_mac',
-        '-data', vim.fn.expand('~/.cache/jdtls-workspace') .. workspace_dir,
+        '-data', vim.fn.expand('~/.cache/jdtls-workspace-') .. workspace_dir,
         -- See `data directory configuration` section in the README
     },
     -- This is the default if not provided, you can remove it. Or adjust as needed.
@@ -35,7 +35,6 @@ local config = {
             --TODO Install java-debug and java-test from Mason DAP ---------> if the above code doesnt work, go to the above directory and find the actual version and paste it here!
         }
     }
-
 }
 
 config['on_attach'] = function(client, bufnr)
@@ -47,6 +46,7 @@ require('jdtls').start_or_attach(config)
 
 function attach_to_debug()
     local dap = require('dap')
+    -- print(dap)
     dap.configurations.java = {
         {
             type = 'java',
