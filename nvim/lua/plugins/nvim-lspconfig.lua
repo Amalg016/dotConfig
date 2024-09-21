@@ -31,7 +31,7 @@ return {
                 -- 'intelephense', -- requires npm to be installed
                 -- 'jsonls', -- requires npm to be installed
                 --'lemminx',
-                'marksman',
+                -- 'marksman',
                 -- 'prettier',
                 -- 'eslint'
                 --  'rust_analyzer'
@@ -61,8 +61,25 @@ return {
                 })
             end
         })
-
-
+        local util = require "lspconfig/util"
+        -- Golang server
+        lspconfig.gopls.setup {
+            on_attach = lsp_attach,
+            capabilities = lsp_capabilities,
+            cmd = { "gopls" },
+            filetypes = { "go", "gomod", "gowork", "gotmpl" },
+            -- root_dir = vim.fs.dirname(vim.fs.find({ "go.work", "go.mod", "git" })),
+            root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+            settings = {
+                gopls = {
+                    completeUnimported = true,
+                    usePlaceholders = true,
+                    analyses = {
+                        unusedparams = true,
+                    },
+                },
+            },
+        }
 
         -- js, ts
         lspconfig.tsserver.setup {}

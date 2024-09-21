@@ -31,10 +31,11 @@ opt.signcolumn = "yes"
 vim.diagnostic.config {
     float = { border = "rounded" }, -- add border to diagnostic popups
 }
---vim.o.background = "dark"
 --vim.cmd [[colorscheme habamax]]
 
-vim.cmd [[colorscheme gruvbox]]
+vim.cmd [[colorscheme retrobox]]
+vim.cmd [[hi NonText ctermbg=none]]
+vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 -- Backspace
 opt.backspace = "indent,eol,start"
 

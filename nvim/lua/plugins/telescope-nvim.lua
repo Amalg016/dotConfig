@@ -28,8 +28,10 @@ return {
             '--ignore-file',
             '.gitignore'
         },
-        file_ignore_patterns = { "^./.git/", "^node_modules/", "^vendor/", ".cache", "%.o", "%.a", "%.out", "%.class",
+        file_ignore_patterns = { "^./.git/", "^node_modules/", "^vendor/", ".cache", "%.o", "%.a",
+            "%.out", "%.class",
             "%.pdf", "%.mkv", "%.mp4", "%.zip", "*.class" },
+        vcs_ignore = true
     },
 
     opts = {
