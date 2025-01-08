@@ -1,0 +1,24 @@
+# theme = GruvboxDarkHard 
+theme = catppuccin-mocha 
+# background = #000000
+background-opacity = 0.65
+window-height = 50
+window-width = 180
+window-padding-balance = true
+background-blur-radius = 16
+
+
+font-family = JetBrainsMono Nerd Font
+font-size = 15
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+
+confirm-close-surface = false
+macos-titlebar-style = hidden
+window-decoration = true
+
+keybind = super+r=reload_config
+keybind = super+i=inspector:toggle
+keybind = global:cmd+grave_accent=toggle_quick_terminal
