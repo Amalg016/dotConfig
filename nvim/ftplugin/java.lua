@@ -8,9 +8,6 @@ local jdtls = require("jdtls")
 local bundles = {
     vim.fn.glob(home ..
         "/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
-    "/Applications/Eclipse.app/Contents/Eclipse/plugins/junit-jupiter-api_5.10.1.jar",
-    "/Applications/Eclipse.app/Contents/Eclipse/plugins/junit-jupiter-engine_5.10.1.jar",
-    "/Applications/Eclipse.app/Contents/Eclipse/plugins/junit-jupiter-params_5.10.1.jar",
 }
 -- Needed for running/debugging unit tests
 -- vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n"))
