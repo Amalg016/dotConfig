@@ -23,6 +23,7 @@ opt.smartcase = true
 
 -- Cursor Line
 opt.cursorline = true
+opt.guicursor = ""
 
 -- Appearance
 opt.termguicolors = true
@@ -31,11 +32,14 @@ opt.signcolumn = "yes"
 vim.diagnostic.config {
     float = { border = "rounded" }, -- add border to diagnostic popups
 }
---vim.cmd [[colorscheme habamax]]
 
 vim.cmd [[colorscheme retrobox]]
+
+--vim.cmd [[colorscheme rose-pine])
+
 vim.cmd [[hi NonText ctermbg=none]]
 vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+
 -- Backspace
 opt.backspace = "indent,eol,start"
 

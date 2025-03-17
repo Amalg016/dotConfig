@@ -33,3 +33,34 @@ if [ -z "$branch" ]; then
 fi
     git switch "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##" | sed "s/ //")"
 }
+
+
+# Function to add files to the git staging area
+function git_add_with_fzf() {
+  local selected_files
+  selected_files=$(git status --porcelain | awk '{print $2}' | fzf --multi --preview 'git diff --color=always {}')
+
+  if [[ -n "$selected_files" ]]; then
+    echo "$selected_files" | xargs git add
+    echo "Added files to staging area:"
+    echo "$selected_files"
+  else
+    echo "No files selected."
+  fi
+}
+
+
+# Function to remove files from the git staging area
+function git_reset_with_fzf() {
+  local selected_files
+  selected_files=$(git diff --cached --name-only | fzf --multi --preview 'git diff --cached --color=always {}')
+
+  if [[ -n "$selected_files" ]]; then
+    echo "$selected_files" | xargs git reset
+    echo "Removed files from staging area:"
+    echo "$selected_files"
+  else
+    echo "No files selected."
+  fi
+}
+

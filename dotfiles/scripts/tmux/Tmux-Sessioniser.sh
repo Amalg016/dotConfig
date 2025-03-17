@@ -1,15 +1,15 @@
 if [ $# -gt 0 ]; then
-    options=("$HOME/ZIDE/zohodesk" "$HOME/Documents/Work")
+    options=("$HOME/eclipse-workspace/work_zohodesk1/" "$HOME/Documents/Work"  "$HOME/Work/client_projects/zohodesk_react_poc/" "$HOME/Work/client_projects/react_client")
     selected=$(printf '%s\n' "${options[@]}" | fzf)
 else
-    selected=$(find ~/PersonalProjects/JavaProjects ~/PersonalProjects/CProjects ~/PersonalProjects/JsProjects ~/PersonalProjects/RustProjects ~/PersonalProjects/ReactProjects ~/Documents/Work  ~/PersonalProjects/GoProjects  ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/PersonalProjects/JavaProjects ~/PersonalProjects/CProjects ~/PersonalProjects/JsProjects ~/PersonalProjects/RustProjects ~/PersonalProjects/ReactProjects ~/Documents/Work  ~/PersonalProjects/GoProjects ~/PersonalProjects/ZigProjects ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected_name=$(basename $selected | tr . _)
 echo $selected_name
 tmux_running=$(pgrep tmux)
 

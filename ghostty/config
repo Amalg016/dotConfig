@@ -1,19 +1,18 @@
 # theme = GruvboxDarkHard 
-theme = catppuccin-mocha 
+# theme = catppuccin-mocha 
 # background = #000000
-background-opacity = 0.65
+# background-opacity = 0.65
 window-height = 50
 window-width = 180
 window-padding-balance = true
 background-blur-radius = 16
-
-
+theme = Tomorrow Night Bright
+# custom-shader = shaders/bloom.glsl
 font-family = JetBrainsMono Nerd Font
 font-size = 15
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
-
 
 confirm-close-surface = false
 macos-titlebar-style = hidden

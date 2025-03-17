@@ -23,7 +23,7 @@ return {
         require('mason-lspconfig').setup({
             -- Install these LSPs automatically
             ensure_installed = {
-                'bashls', -- requires npm to be installed
+                -- 'bashls', -- requires npm to be installed
                 -- 'cssls', -- requires npm to be installed
                 -- 'html', -- requires npm to be installed
                 -- 'gradle_ls',
@@ -44,6 +44,11 @@ return {
         local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
         local lsp_attach = function(client, bufnr)
             -- Create your keybindings here...
+
+            -- Check if the inlay hints capability is supported
+            -- if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, { bufnr })
+            -- end
         end
 
         -- Call setup on eacah LSP server
@@ -80,13 +85,31 @@ return {
                 },
             },
         }
+        lspconfig.zls.setup {
+            on_attach = lsp_attach,
+            capabilities = lsp_capabilities,
+            filetypes = { "zig" },
+            root_dir = util.root_pattern("build.zig", ".git"),
+
+        }
+
+        -- vim.api.nvim_create_autocmd("FileType", {
+        --     pattern = { "markdown" },
+        --     group = vim.api.nvim_create_augroup("markdown1", {}),
+        --     callback = function()
+        --         vim.lsp.start {
+        --             name = "markdownServer",
+        --             -- cmd = vim.lsp.rpc.connect("127.0.0.1", 8080),
+        --             cmd = "/Users/amal-18877/PersonalProjects/ZigProjects/testLsp/zig-out/bin/testLsp",
+        --             capabilities = lsp_capabilities,
+        --             root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]),
+        --         }
+        --     end,
+        -- })
 
         -- js, ts
         lspconfig.tsserver.setup {}
         -- lspconfig.eslint.setup {}
-
-        -- marksman
-        lspconfig.marksman.setup {}
 
         -- java handled in java.lua file
 

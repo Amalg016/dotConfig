@@ -91,6 +91,17 @@ return {
         local dap = require('dap')
         require('dapui').setup(opts)
 
+        -- Customize breakpoint signs
+        vim.api.nvim_set_hl(0, "DapStoppedHl", { fg = "#98BB6C", bg = "#2A2A2A", bold = true })
+        vim.api.nvim_set_hl(0, "DapStoppedLineHl", { bg = "#204028", bold = true })
+        vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStoppedHl', linehl = 'DapStoppedLineHl', numhl = '' })
+        vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DiagnosticSignError', linehl = '', numhl = '' })
+        vim.fn.sign_define('DapBreakpointCondition',
+            { text = '', texthl = 'DiagnosticSignWarn', linehl = '', numhl = '' })
+        vim.fn.sign_define('DapBreakpointRejected',
+            { text = '', texthl = 'DiagnosticSignError', linehl = '', numhl = '' })
+        vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DiagnosticSignInfo', linehl = '', numhl = '' })
+
         dap.listeners.after.event_initialized["dapui_config"] = function()
             require('dapui').open()
         end
@@ -107,9 +118,28 @@ return {
 
         -- Add dap configurations based on your language/adapter settings
         -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
-        -- dap.configurations.xxxxxxxxxx = {
-        --   {
-        --   },
-        -- }
+        dap.configurations.java = {
+            {
+                name = "Debug Launch (2GB)",
+                type = 'java',
+                request = 'launch',
+                vmArgs = "" ..
+                    "-Xmx2g "
+            },
+            {
+                type = 'java',
+                request = 'attach',
+                name = "Attach to Java Process(8000)",
+                hostName = "localhost",
+                port = 8000
+            },
+            {
+                type = 'java',
+                request = 'attach',
+                name = "Attach to Java Process(5005)",
+                hostName = "localhost",
+                port = 5005
+            }
+        }
     end
 }
