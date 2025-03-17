@@ -13,7 +13,7 @@ return {
         -- Useful status updates for LSP
         -- https://github.com/j-hui/fidget.nvim
         { 'j-hui/fidget.nvim',                opts = {} },
-        { 'mfussenegger/nvim-jdtls' },
+        { 'mfussenegger/nvim-jdtls',          version = "e129398e171e87c0d9e94dd5bea7eb4730473ffc" }, -- only upto this version works for the current setup using java11
         -- Additional lua configuration, makes nvim stuff amazing!
         -- https://github.com/folke/neodev.nvim
         { 'folke/neodev.nvim' },
@@ -35,7 +35,7 @@ return {
                 -- 'prettier',
                 -- 'eslint'
                 --  'rust_analyzer'
-                'tsserver', -- requires npm to be installed
+                'ts_ls', -- requires npm to be installed
                 -- 'yamlls', -- requires npm to be installed
             }
         })
@@ -108,7 +108,7 @@ return {
         -- })
 
         -- js, ts
-        lspconfig.tsserver.setup {}
+        lspconfig.ts_ls.setup {}
         -- lspconfig.eslint.setup {}
 
         -- java handled in java.lua file

@@ -40,7 +40,6 @@ local config = {
     init_options = {
         bundles = bundles,
         extendedClientCapabilities = jdtls.extendedClientCapabilities,
-
     },
     settings = {
         java = {
@@ -56,6 +55,11 @@ local config = {
                     },
 
                 },
+            },
+            inlayHints = {
+                parameterNames = {
+                    enabled = "literals" -- literals, all , none
+                }
             },
             completion = {
                 favoriteStaticMembers = {
@@ -76,9 +80,9 @@ local config = {
 }
 
 config['on_attach'] = function(client, bufnr)
-    vim.lsp.inlay_hint.enable(true, { bufnr }) -- Enable inlay hints for the current buffer
     jdtls.setup_dap({ hotcodereplace = 'auto' })
     require("jdtls.dap").setup_dap()
+    vim.lsp.inlay_hint.enable(true, { bufnr }) -- Enable inlay hints for the current buffer
 end
 
 function run_app(debug)
